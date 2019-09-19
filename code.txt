@@ -1,0 +1,15 @@
+int A = 11;
+
+char B='x';
+charC ='x';
+charD='x';
+
+//2EF_G;
+
+int function(int x, char y){
+    if(x == 10){
+        s = "xxssaex";
+        _x=10;
+    }
+    return x ;
+}

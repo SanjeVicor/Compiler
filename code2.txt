@@ -1,0 +1,23 @@
+int z = 10; 
+int d;
+char x = "<", y='x' ;
+
+char "dd", z = 'x';
+
+float z = 10 , a =10.12;
+
+
+bool l = true;
+bool l;
+bool l, z =false;
+
+int d(int x){
+    char a='s';
+        int a = 5555;
+}
+
+int v(int x)
+{
+    char a='s';
+        int a = 5555;
+}

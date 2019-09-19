@@ -1,0 +1,42 @@
+Declaracion de variables int       : int\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+)?(\s*,\s*(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+)?)*\s*;
+
+Declaracion de variables float     : float\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,7})?)?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,7})?)?))*\s*;
+
+Declaracion de variables double    : double\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,16})?)?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,16})?)?))*\s*;
+
+Declaracion de variables string    : string\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.*\x22)|(\x27.*\x27)))?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.*\x22)|(\x27.*\x27)))?))*\s*;
+
+Declaracion de variables char      : char\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))))*\s*;
+
+Declaracion de variables booleanas : bool\s+(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*(true|false))?(\s*,\s*(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*(true|false))?)*\s*;
+
+--------------
+Comparaciones |
+--------------
+
+int : (\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)
+
+float : (\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)
+
+double : (\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)
+
+char:((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)
+
+string: ((\x22*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s*((\x22.*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*)
+
+
+Ejemplo con if
+if\x28\s*((\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)|(\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)|(\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)|((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)|((\x22*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s*((\x22.*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*))\s*\x29
+
+------------------
+funciones : para tipos que ocupan mas de una linea, crear un segundo metodo
+            que que lea todo el archivo file.read() y buscar expresiones
+
+(int|char|string|void|float|double)\s+(\x5f)?[a-zA-Z](\w|\d)*\s*\x28((int|char|string|void|float|double)\s+(\x5f)?[a-zA-Z](\w|\d)*)*\x29\x7b(.+|\s*|\n*)+\x7d
+
+OPCION 2
+(int|char|string|void|float|double)\s+(\x5f)?[a-zA-Z](\w|\d)*\s*\x28((int|char|string|void|float|double)\s+(\x5f)?[a-zA-Z](\w|\d)*)*\x29(\x7b)?
+escenario1 -> void x() {
+escenario2 -> void z()
+
+Alimentar la lista linea por linea y al final buscar llaves por pares
