@@ -1,0 +1,3 @@
+Para ejecutar, escribir la siguiente linea de comando : python main.py -f nombreDelArchivoQueContieneCodigo
+
+Ejemplo : python main.py -f code.txt

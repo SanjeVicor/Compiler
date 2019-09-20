@@ -16,8 +16,8 @@ if errorList:
         print(f"[-] Error : {e}")
 else:
     for inst in instructionList:
-        print(f"[+] Success : {inst.getInstruction()} : {inst.getMessage()} \n") 
-    instructionList , errorList = syntactic.main(fileName)
+        print(f"[+] Success : {inst.getInstruction()} --> {inst.getMessage()} \n") 
+    instructionList , errorList, errorBrackets = syntactic.main(fileName)
     print('-----------------------------------------------')
     if errorList:
         for e in errorList:
@@ -25,3 +25,5 @@ else:
     if instructionList:
         for inst in instructionList:
             print(f"[+] Success : {inst.getInstruction()} \n") 
+    if errorBrackets:
+        print("[!] ERROR en los cierres de llaves")

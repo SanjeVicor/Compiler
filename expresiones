@@ -1,0 +1,28 @@
+doWhile
+
+do{\s*}while\x28\s*((\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)|(\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,7}|(\x5f)?[a-zA-Z](\w|\d)*)|(\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)\s*(<|>|<=|>=|!=|==)\s*(\d+(\x2e)\d{1,16}|(\x5f)?[a-zA-Z](\w|\d)*)|((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s((\x22.\x22)|(\x27.\x27)|(\x5f)?[a-zA-Z](\w|\d)*)|((\x22*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*)\s*(!=|==)\s*((\x22.*\x22)|(\x27.*\x27)|(\x5f)?[a-zA-Z](\w|\d)*))\s*\x29;
+
+Funciones
+void
+
+void\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*(return;){0,1}}
+
+string
+
+string\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*return\s(""|"(\s*(\w|\d)*\W*)*"|(\x5f)?[a-zA-Z](\w|\d)*);}
+
+int
+
+int\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*return\s(\d+|(\x5f)?[a-zA-Z](\w|\d)*);}
+
+bool
+
+bool\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*return\s(true|false|(\x5f)?[a-zA-Z](\w|\d)*);}
+
+Double
+
+double\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*return\s( \d+(\x2e)\d{1,16}|\d+|(\x5f)?[a-zA-Z](\w|\d)*);}
+
+float
+
+double\s+(\x5f)?[a-zA-Z](\w|\d)*\x28((int\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(float\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(double\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(string\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(char\s+(\x5f)?[a-zA-Z](\w|\d)*,\s*)|(bool\s+(\x5f)?[a-zA-Z](\w|\d),\s*))*\x29{\s*return\s( \d+(\x2e)\d{1,16}|\d+|(\x5f)?[a-zA-Z](\w|\d)*);}

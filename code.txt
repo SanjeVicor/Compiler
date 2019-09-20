@@ -1,15 +1,41 @@
 int A = 11;
 
 char B='x';
-charC ='x';
+char C ='x';
+//Si es aceptable
 charD='x';
 
 //2EF_G;
 
 int function(int x, char y){
-    if(x == 10){
+    int x = 0;
+
+    if(x >= 10)
+    {
         s = "xxssaex";
         _x=10;
     }
-    return x ;
+    elif(x < 10)
+    {
+        x = 1;
+    }
+    else{
+       x = x; 
+    }
+
+    while(x <= 2)
+    {
+        x = x +1;
+    }
+
+    do{
+        x ++ ;
+    }while(z < 10);
+
+    if(x >= 10)
+    {
+        x += 1;
+    
+
+    return x;
 }
