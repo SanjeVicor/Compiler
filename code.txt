@@ -1,10 +1,18 @@
 int A = 11;
+int A ;
 
 char B='x';
 char C ='x';
 //Si es aceptable
 charD='x';
-
+int x = 1 + 8 * 8 / 4;
+int x = 1 +8 *8 / 4;
+int x = 1 + 8 *  8  / 4;
+int x = 1 + 8 *  8  / 4 +x;
+//int x = 1 + 8 *  8  / 4 +4x;
+//int x = 1 + 8 *  8  / 4 + 4x;
+int x += 1 + 8 *  8  / 4;
+int x *= 1 + 8 *  8  / 4;
 //2EF_G;
 
 int function(int x, char y){

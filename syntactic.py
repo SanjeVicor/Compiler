@@ -20,8 +20,8 @@ instructionRegexList.append(r"\s*\x7d")
 instructionRegexList.append(r"//.*")
 
 #operaciones
-instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*=\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*((\x2a|\x2b|\x2d|\x2f)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*)?;")
-instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(\x2a=|\x2b=|\x2d=|\x2f=)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*;")
+instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(=|\x2a=|\x2b=|\x2d=|\x2f=)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)(\s*((\x2a|\x2b|\x2d|\x2f)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*))*;")
+#instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(\x2a=|\x2b=|\x2d=|\x2f=)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*;")
 instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(\x2a{2}|\x2b{2}|\x2d{2})\s*;")
 
 #igualacion de variables
