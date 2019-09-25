@@ -5,6 +5,8 @@ class Instruction():
     
     def getMessage(self):
         return self.message
+
+     
     
     def getInstruction(self):
         return self.instruction

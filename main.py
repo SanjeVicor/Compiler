@@ -17,13 +17,14 @@ if errorList:
 else:
     for inst in instructionList:
         print(f"[+] Success : {inst.getInstruction()} --> {inst.getMessage()} \n") 
-    instructionList , errorList, errorBrackets = syntactic.main(fileName)
+    instructionList , errorList= syntactic.main(fileName)
     print('-----------------------------------------------')
-    if errorList:
-        for e in errorList:
-            print(f"[-] Error : {e} \n")
+    
     if instructionList:
         for inst in instructionList:
             print(f"[+] Success : {inst.getInstruction()} \n") 
-    if errorBrackets:
-        print("[!] ERROR en los cierres de llaves")
+    
+    if errorList:
+        errorList.sort(key=lambda x:x.getNline())
+        for e in errorList:
+            print(f"[-] Error : {e.getInstruction()}, linea {e.getNline()} \n")

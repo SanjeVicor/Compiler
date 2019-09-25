@@ -23,6 +23,8 @@ instructionRegexList.append(r"//.*")
 instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(=|\x2a=|\x2b=|\x2d=|\x2f=)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)(\s*((\x2a|\x2b|\x2d|\x2f)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*))*;")
 #instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(\x2a=|\x2b=|\x2d=|\x2f=)\s*(\d+|(\x5f)?[a-zA-Z](\w|\d)*)\s*;")
 instructionRegexList.append(r"((int|float|double)\s+)?((\x5f)?[a-zA-Z](\w|\d)*)\s*(\x2a{2}|\x2b{2}|\x2d{2})\s*;")
+#arreglos 
+instructionRegexList.append(r"\s*int\s+(\x5f)?[a-zA-Z](\w|\d)*\x5b((\x5f)?[a-zA-Z](\w|\d)*|\d)\x5d\s*(=\s*\d)?;")
 
 #igualacion de variables
 instructionRegexList.append(r"\s*(int\s+)?(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+)?(\s*,\s*(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+)?)*\s*;")
@@ -38,54 +40,59 @@ instructionRegexList.append(r"\s*(int\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+)?(\s
 instructionRegexList.append(r"\s*(float\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,7})?)?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,7})?)?))*\s*;")
 instructionRegexList.append(r"\s*(double\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,16})?)?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*\d+((\x2e)\d{1,16})?)?))*\s*;")
 instructionRegexList.append(r"\s*(string\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.*\x22)|(\x27.*\x27)))?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.*\x22)|(\x27.*\x27)))?))*\s*;")
-instructionRegexList.append(r"\s*(char\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))))*\s*")
+instructionRegexList.append(r"\s*(char\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))?(\s*,\s*((\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*((\x22.?\x22)|(\x27.?\x27)))))*\s*;")
 instructionRegexList.append(r"\s*(bool\s+)(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*(true|false))?(\s*,\s*(\x5f)?[a-zA-Z](\w|\d)*\s*(=\s*(true|false))?)*\s*;")
 
 def main(fileName):
-      global instructionRegexList
-      instructionSuccess = list()
-      instructionErrorList = list()
-      
-      with open(fileName) as file:
-         
-        for line in file: 
+    global instructionRegexList
+    instructionSuccess = list()
+    instructionErrorList = list()
+    
+    with open(fileName) as file:
+        i = 0
+        for line in file:
+            i += 1 
             found = False
             if line != '\n':
                 for key in instructionRegexList: 
                     if len(line) == 0:
                         break 
                     line = line.strip()
-                    match = re.match(key, line)
-                    #print(match)
+                    match = re.fullmatch(key, line) 
                     if match:
-                        #print(f"{match} , {key}")
-                        #print(f"{line} , {match}")
                         found = True
                         instruction = line[match.start():match.end()]
                         line = re.sub(key,' ',line)
-                        #print(f"{line} , {instruction} , {key}")
-                        instructionObj = InstructionLine(instruction)
+                        instructionObj = InstructionLine(instruction,i)
                         instructionSuccess.append(instructionObj)     
-                if not found :
-                       instructionErrorList.append(line)
-      file.close()
-      
-      if instructionSuccess:
-          x = 0
-          y = 0
-          for instruction in instructionSuccess:
-              print(instruction)
-              BracketOpen = re.search('{',instruction.getInstruction())
-              BracketClose = re.search('}',instruction.getInstruction())
-              if BracketOpen:
-                  x += 1
-              elif BracketClose:
-                  y += 1
-
-          if x != y:
-              errorBracket = True
-          else:
-              errorBracket = False
+                if not found and line != "" : 
+                    instructionObj = InstructionLine(line,i)
+                    instructionErrorList.append(instructionObj)
+    file.close()
+    
+    if instructionSuccess:
+        x = 0
+        y = 0
+        i = 0
+        errorBracket = False
+        for instruction in instructionSuccess:
+            BracketOpen = re.search('{',instruction.getInstruction())
+            BracketClose = re.search('}',instruction.getInstruction())
+            if BracketOpen:
+                x += 1
+                lastOpenPos = instruction
+                
+            elif BracketClose:
+                y += 1
+                lastClosePos = instruction
             
-      return instructionSuccess, instructionErrorList , errorBracket
+
+        if x > y: 
+            instructionErrorList.append(lastOpenPos)
+            return instructionSuccess, instructionErrorList 
+        elif x < y:
+            instructionErrorList.append(lastClosePos)
+            return instructionSuccess, instructionErrorList 
+        
+        return instructionSuccess, instructionErrorList 
 

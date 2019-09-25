@@ -1,11 +1,11 @@
 int z = 10; 
 int d;
 char x = "<", y='x' ;
-
+string c = "sasdsds";
 char "dd", z = 'x';
 
-float z = 10 , a =10.12;
-
+float z = 10 , a =10.12222;
+int x[z];
 
 bool l = true;
 bool l;
