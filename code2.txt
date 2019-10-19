@@ -11,6 +11,12 @@ bool l = true;
 bool l;
 bool l, z =false;
 
+do{
+    x = z;
+}while(z<2);
+
+do{x = z;}while(z<2);
+
 int d(int x){
     char a='s';
         int a = 5555;

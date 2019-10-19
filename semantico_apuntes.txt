@@ -1,0 +1,5 @@
+Exceptiones o errores :
+-Las variables deben estar declaradas antes de ser utilizadas
+-Variables unicas
+-Compatibilidad de tipos
+-Declaracion de variables extras (inutilizables) --> warnig : desperdicio de memoria
