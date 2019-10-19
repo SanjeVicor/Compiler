@@ -6,7 +6,7 @@ compilersWords2 = {}
 
 compilersWords[r'if'] = {'message':'Estructura de control condicional'}
 compilersWords[r'else'] = {'message':'Estructura de control condicional'}
-compilersWords[r'elif'] = {'message':'Estructura de control condicional'}
+#compilersWords[r'elif'] = {'message':'Estructura de control condicional'}
 compilersWords[r'for'] = {'message':'Estructura de control repetitiva'}
 compilersWords[r'while'] = {'message':'Estructura de control repetitiva'}
 compilersWords[r'do'] = {'message':'Estructura de control repetitiva'}
