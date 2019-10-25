@@ -2,7 +2,7 @@ int A = 11;
 int A ;
 
 char B='x';
-char C ='x';
+char C ='';
 //Si es aceptable
 charD='x';
 int x = 1 + 8 * 8 / 4;
@@ -23,7 +23,7 @@ int function(int x, char y){
         s = "xxssaex";
         _x=10;
     }
-    elif(x < 10)
+    else if(x < 10)
     {
         x = 1;
     }

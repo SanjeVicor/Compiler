@@ -1,5 +1,21 @@
 Exceptiones o errores :
--Las variables deben estar declaradas antes de ser utilizadas
--Variables unicas
--Compatibilidad de tipos
+-Las variables deben estar declaradas antes de ser utilizadas[+Listo]
+-ID's unicos[+LIsto]
+-ID's unicos por bloque/funcion[-Falta]
+-Comparaciones validas[-Falta]
+-Compatibilidad de tipos[+Listo]
 -Declaracion de variables extras (inutilizables) --> warnig : desperdicio de memoria
+
+
+Operaciones validas
+
+Numericas entre : char, int, float, double, bool --> Todos estos son números
+    Ejemplo:
+        char x = 'd';
+        char y = 'd' + 4 + true;
+        char z = 'd' + '5';
+        cout << true + 5 + x << endl;
+        cout << true / 5 - x % false << endl;
+
+
+cadenas : string , char 
