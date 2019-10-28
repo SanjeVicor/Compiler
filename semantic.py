@@ -47,7 +47,7 @@ def getVariables(lexicalList,sintacticList):
             for inst in setList:
                 #print(inst.getInstruction())
                 if inst.getMessage() == "Tipo de dato":
-                   # print(inst.getInstruction())
+                    #print(inst.getInstruction())
                     if re.fullmatch(r"(int|float|double)",inst.getInstruction()):
                         number = True
                     elif inst.getInstruction() == "string":
@@ -58,6 +58,7 @@ def getVariables(lexicalList,sintacticList):
                         boolean= True
                 elif inst.getMessage() == "identificador":
                     var = inst.getInstruction()
+                    print(inst.getInstruction())
                     if searchVariable(var,block):
                     #if var in variableList:
                         print("Error")
@@ -289,6 +290,13 @@ def getOperations(lexicalList,sintacticList):
                 print(inst.getInstruction())
     """
 
+def searchCalls():
+    #Dividir por identificadores, true, false, digitos
+    #el primer objeto es la funcion a llamar, entonces buscar en VariableList si existe.
+    #Cuantos parametros recibe?
+    #Son validos?
+    pass
+
 def main(lexicalList,sintacticList):
     global stringList
     global charList
@@ -312,7 +320,8 @@ def main(lexicalList,sintacticList):
 
     #IDS
     getVariables(lexicalList,sintacticList)
-    getFunctions(lexicalList,sintacticList) # ---> TERMINAR
+    getFunctions(lexicalList,sintacticList)
+    searchCalls()
     #Buscar Operaciones -> ¿Son posibles ?
     #Buscar Comparaciones --> ¿Son compatibles?
     getOperations(lexicalList,sintacticList)
@@ -328,3 +337,7 @@ def main(lexicalList,sintacticList):
     print('\n')
     print('\n')
     print(f"{variableList}")
+    print('\n')
+    print('\n')
+    for e in variableList:
+        print(e)

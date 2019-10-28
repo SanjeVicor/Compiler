@@ -24,7 +24,7 @@ int main(){
     bool m = true;
     bool n;
     bool ssS, z =false;
-
+    sdsdasd(asd,true,false,1551.222);
     do{
         x = z;
     }while(z<2);
@@ -35,13 +35,16 @@ int main(){
     return 0;
 }
 
-int pol(){
+int pol(char xsaAS){
     int hola = 5 + hola;
     int k = 8 / hola + letra;
     int asad;
 }
 
-int asad(int goal, char letra){
+int asad(int $goal, char *letra, string cadena){
     int hola = 5 + hola + letra;
     int k = 8 / asad;
+    int x = cadena + letra;
+    string q = "ffkf";
 }
+
