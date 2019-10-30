@@ -17,13 +17,13 @@ def getLexicalInstuctionList(instructionNline, lexicalList):
 
 def searchVariable(var, block):
     global variableList
-
+    #print(f"Searching {var}")
     for k, v in variableList.items():
         if var == k:
             #print(f"search {var}, {k}")
             #print(f"search {block}")
             #print(v["block"])
-            if block == v["block"]:
+            if block in v["block"]:
                 return True
     return False
 
@@ -40,6 +40,7 @@ def getVariables(lexicalList,sintacticList):
     boolean = False
     block = 0
     for instS in sintacticList:
+        done = False
         if re.match(r"function", instS.getType()) :
             block +=1
         if re.match(r"variable_instance", instS.getType()) or re.fullmatch("function-parameters", instS.getType()):
@@ -58,12 +59,14 @@ def getVariables(lexicalList,sintacticList):
                         boolean= True
                 elif inst.getMessage() == "identificador":
                     var = inst.getInstruction()
-                    print(inst.getInstruction())
-                    if searchVariable(var,block):
+                    #print(inst.getInstruction())
+                    if not searchVariable(var,block):
+                        done = True
+                    if searchVariable(var,block) and not done:
                     #if var in variableList:
                         print("Error")
-                        print(f"variable {var} previamente declarada, linea {instS.getNline()}, bloque {block}")
-                        print(variableList)
+                        print(f"variable '{var}' previamente declarada, linea {instS.getNline()}, bloque {block}")
+                        #print(variableList)
                         break
                     if number:
                         if var not in variableList: #Correcto
@@ -159,7 +162,7 @@ def getFunctions(lexicalList,sintacticList):
 def getOperandos(instruction):
     print('\n')
     #opList = re.compile(r"(\x2a|\x2b|-|/|%|and|or|not|&&|\x7c\x7c|=|;|int|char|string|int|float|double|bool)").split(instruction)
-    opList = re.sub(r"(\x2a|\x2b|-|/|%|and|or|not|&&|\x7c\x7c|=|;|\x28|\x29|\x7b|\x7d|int|char|string|int|float|double|bool|void)"," ",instruction)
+    opList = re.sub(r"(do|if|else|while|for|\x5f|\x24|\x2a|<|>|==|!=|<=|>=|\x2a|\x2b|-|/|%|and|or|not|&&|\x7c\x7c|=|;|\x28|\x29|\x7b|\x7d|int|char|string|int|float|double|bool|void)"," ",instruction)
     opList = opList.split()
     print(f"{instruction}  -- > {opList}")
     return opList
@@ -240,7 +243,9 @@ def operandosValidos(operandos, nLine, block):
                         for x in operandos:
                             found = False
                             for y in stringList:
+                                #print(f"{x} -- {y}")
                                 if re.fullmatch(y,x):
+                                    #print("FOUND!!!")
                                     if stringList[y]['line'] == None or variableList[y]['line'] <= nLine:
                                         if stringList[y]['line'] != None:
                                             for nBlock in variableList[y]['block']:
@@ -253,7 +258,9 @@ def operandosValidos(operandos, nLine, block):
                                     if found :
                                         break
                         if not found:
-                            return False  
+                            return False 
+                        else:
+                            return True 
     return True
         
 def getOperations(lexicalList,sintacticList):
@@ -273,6 +280,15 @@ def getOperations(lexicalList,sintacticList):
         if re.search(r"function", instS.getType()) :
             block += 1
         if re.search(r"operation", instS.getType()):
+            operandos = getOperandos(instS.getInstruction())
+            msg = operandosValidos(operandos,instS.getNline(), block)
+            if not msg :
+                print(f"error no es posible ejecutar la siguiente operación {instS.getInstruction()} , linea {instS.getNline()}")
+            else:
+                print(instS.getInstruction())
+                print("todo correcto")
+        if re.search(r"(do-while|if|elsf|while|for)", instS.getType()):
+            
             operandos = getOperandos(instS.getInstruction())
             msg = operandosValidos(operandos,instS.getNline(), block)
             if not msg :
@@ -325,6 +341,7 @@ def main(lexicalList,sintacticList):
     #Buscar Operaciones -> ¿Son posibles ?
     #Buscar Comparaciones --> ¿Son compatibles?
     getOperations(lexicalList,sintacticList)
+    """
     print('\n')
     print('\n')
     print(f"String : {stringList}")
@@ -341,3 +358,5 @@ def main(lexicalList,sintacticList):
     print('\n')
     for e in variableList:
         print(e)
+    """
+    

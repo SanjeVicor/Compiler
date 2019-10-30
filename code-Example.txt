@@ -1,14 +1,16 @@
 int main(){
     int hola;
-    int op = _d;
+    int d;
+    int d = hola + 5;
+    int op = d;
     int a = 10 + hola; 
     string qq = "hola";
-    //int b = 5 + qq;
+    int b = 5 + qq;
     int b = 5 + a;
     //Error ya que j no ha sido declarada
     int zs = b + j; 
     char c ='';
-    //string x ='' ;
+    int x =0;
     string d ="" ;
 
     char e =' ', f = '@' ;
@@ -19,32 +21,40 @@ int main(){
     //int j = 5 + 10;
     int pp = 5 + j;
     float k = 10 ;
-    //int l[z];
 
     bool m = true;
     bool n;
-    bool ssS, z =false;
-    sdsdasd(asd,true,false,1551.222);
+    bool ssS;
+    bool z =false;
     do{
         x = z;
     }while(z<2);
 
     do{
         x = z;
-    }while(z<2);
+    }while(z==true);
+    string cadena = "";
+    if(n != false){
+        x = z;
+    }
+    else if(cadena == "dsa"){
+        x = pp;
+    }
+
+    while(true)
+    {
+        x = j + pp;
+    }
+
+    while(true<=m)
+    {
+        x = j + pp;
+    }
+    
+    while(true<=h)
+    {
+        x = j + pp;
+    }
     return 0;
-}
-
-int pol(char xsaAS){
-    int hola = 5 + hola;
-    int k = 8 / hola + letra;
-    int asad;
-}
-
-int asad(int $goal, char *letra, string cadena){
-    int hola = 5 + hola + letra;
-    int k = 8 / asad;
-    int x = cadena + letra;
-    string q = "ffkf";
 }
 

@@ -43,20 +43,19 @@ int division( int $a, int $b )
 
 }
 
-void sumatoria(int $count){
-    int $result = 0 ;
-    int $aux = 0;
-    int $i = 0;
+void sumatoriaCuadrados(int $cont)
+{
+    int $result = 0 , $aux = 0;
 
-
-    while($i<$count)
+    for(int $i = 0 ; $i < $cont; $i++)
     {
+
         __asm__ __volatile__("movl %2, %%eax;imull %%eax,%%eax;movl %%eax,%0;addl %0, %1;": "=g" ( $result ) : "g" ( $aux ), "g"($i));
 
         printf("%d , ", $result);
-        $i++;
+
     }
-    printf("  =  %d  ", $aux);
+        printf("  =  %d  ", $aux);
 }
 
 int main()
@@ -70,7 +69,7 @@ int main()
 
     printf("resultado = %d \n\r", division(10000,100));
 
-    printf("Sumatoria de cuadrados = ");sumatoria(20);
+    printf("Sumatoria de cuadrados = ");sumatoriaCuadrados(20);
     return 0;
 
 }
