@@ -26,28 +26,31 @@ int gcd( int $a, int $b )
     return $result ;
 }
 
-int suma( int $a, int $b )
-
+float suma( float $a, float $b )
 {
 
-    int $result;
+    float $result ;
 
-    __asm__ __volatile__( "movl %1, %%eax;movl %2, %%ebx;addl %%ebx, %%eax;movl %%eax, %0;" : "=g" ( $result ) : "g" ( $a ), "g" ( $b )  );
-
-    return $result ;
+    __asm__( "fld %1;"
+              "fld %2;"
+              "fadd;"
+              "fstp %1;"
+              : "=g" ( $result ) : "g" ( $a ), "g" ( $b )  );
+    return $a ;
 
 }
 
-int division( int $a, int $b )
-
+float division( float $a, float $b )
 {
+    float $result;
 
-    int $result;
 
-    __asm__ __volatile__("movl %1, %%eax; movl %2, %%ebx;idivl %%ebx, %%eax;movl %%eax, %0;" : "=g" ( $result ) : "g" ( $a ), "g" ( $b ));
+     __asm__ ( "fld %2;"
+              "fld %1;"
+              "fdiv;"
+              "fstp %1;" : "=g" ($result ) : "g" ($a), "g" ($b) ) ;
 
-    return $result ;
-
+    return $a ;
 }
 
 void sumatoria(int $count){
@@ -66,67 +69,73 @@ void sumatoria(int $count){
     printf("  =  %d  ", $aux);
 }
 
-int resta( int $a, int $b )
+float resta( float $a, float $b )
 {
-    int $result;
+    float $result;
 
-    __asm__ __volatile__( "movl %1, %%eax;movl %2, %%ebx;subl %%ebx, %%eax;movl %%eax, %0;" : "=g" ( $result ) : "g" ( $a ), "g" ( $b )  );
+     __asm__ ( "fld %2;"
+              "fld %1;"
+              "fsub;"
+              "fstp %1;" : "=g" ($result ) : "g" ($a), "g" ($b) ) ;
 
-    return $result ;
+    return $a ;
 
 }
 
-int multiplicacion( int $a, int $b )
+float multiplicacion( float $a, float $b )
 {
-    int $result;
+    float $result;
 
-    __asm__ __volatile__( "movl %1, %%eax;movl %2, %%ebx;imul %%ebx;movl %%eax, %0;" : "=g" ( $result ) : "g" ( $a ), "g" ( $b )  );
 
-    return $result ;
+     __asm__ ( "fld %2;"
+              "fld %1;"
+              "fmul;"
+              "fstp %1;" : "=g" ($result ) : "g" ($a), "g" ($b) ) ;
+
+    return $a ;
 }
 
-int exponencial( int $a, int $b )
+float exponencial( float $a, int $b )
 {
     int $result;
 
     if($b == 0)
     {
-        $result = 1;
+        $a = 1;
     }else if($b == 1)
     {
-        $result = $a;
+        $a = $a;
     }else{
         $b--;
-        __asm__ __volatile__(
+        __asm__(
                              " movl %2 , %%ecx ;"
-                              "movl %1, %%eax;"
-                              "movl %1, %%ebx;"
+                             "fld %1;"
+                             "fld %1;"
                               "POW: "
-                              "imul %%ebx;"
-                              "movl %%eax, %0;"
+                              "fld %1;"
+                              "fmul;"
+                              "fstp %1;"
                               "loop POW;"
                                : "=g" ( $result ) : "g" ( $a ), "g" ( $b )  );
     }
 
-    return $result ;
+    return $a ;
 }
 
 int main()
 {
 
-
-
     printf("Maximo Comun Divisor    - resultado = %d \n\r", gcd(8,4));
 
-    printf("Suma                    - resultado = %d \n\r", suma(1000,-100));
+    printf("Suma                    - resultado = %f \n\r", suma(1000.53,30));
 
-    printf("Resta                   - resultado = %d \n\r", resta(1000,-100));
+    printf("Resta                   - resultado = %f \n\r", resta(1000.1,-100.1));
 
-    printf("Multiplicacion          - resultado = %d \n\r", multiplicacion(1000,-1));
+    printf("Multiplicacion          - resultado = %f \n\r", multiplicacion(1000.1,-1));
 
-    printf("Division                - resultado = %d \n\r", division(10000,100));
+    printf("Division                - resultado = %f \n\r", division(5,2));
 
-    printf("Potencia                - resultado = %d \n\r", exponencial(5,0));
+    printf("Potencia                - resultado = %f \n\r", exponencial(2.5,2));
 
     printf("Sumatoria de cuadrados  - resultado = ");sumatoria(20);
     return 0;
